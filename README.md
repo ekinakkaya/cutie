@@ -13,5 +13,12 @@ Such as training small machine learning models like the MNIST dataset. This will
 ## Build & Run
 
 I am developing this on a Windows machine, so for now I am using gcc and a basic powershell script to build this. 
+
+To build with the powershell script:
 ```
+./build.ps1
 ```
+
+The executable will be generated in the `bin` folder.
+
+I will create a makefile for this process in the upcoming days.
