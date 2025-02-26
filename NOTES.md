@@ -17,4 +17,9 @@ compiler -> bytecode -> virtual machine
 
 - Immediate instructions do not work well for large or variable sized constants like strings. They are usually stored in a seperate _constant data_ region of the binary executable. And the instruction has a pointer to that region.
 
-- 
+- Line information is only used when a runtime error occurs. So we do not want it between the instructions.
+
+- We essentially have 3 main things going on here.
+  - Bytes of code
+  - Constant values
+  - Line information for debugging.

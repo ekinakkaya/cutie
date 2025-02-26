@@ -15,8 +15,13 @@ Such as training small machine learning models like the MNIST dataset. This will
 I am developing this on a Windows machine, so for now I am using gcc and a basic powershell script to build this. 
 
 To build with the powershell script:
-```
+
+```powershell
+# build
 ./build.ps1
+
+# run
+.\bin\cutie.exe
 ```
 
 The executable will be generated in the `bin` folder.
