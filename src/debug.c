@@ -35,7 +35,7 @@ int disassembleInstruction(Chunk *chunk, int offset)
 {
     printf("%04d ", offset);
     /* we check the offset because the first offset is the opcode. */
-    if (offset > 0 && 
+    if (offset > 0 &&
         chunk->lines[offset] == chunk->lines[offset - 1])
     {
         printf("   | ");
@@ -52,6 +52,8 @@ int disassembleInstruction(Chunk *chunk, int offset)
     {
     case OP_CONSTANT:
         return constantInstruction("OP_CONSTANT", chunk, offset);
+    case OP_NEGATE:
+        return simpleInstruction("OP_NEGATE", offset);
     case OP_RETURN:
         return simpleInstruction("OP_RETURN", offset);
     default:
