@@ -7,6 +7,8 @@
    it is simple. */
 VM vm;
 
+static InterpretResult run();
+
 void initVM()
 {
 }

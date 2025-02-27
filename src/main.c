@@ -18,6 +18,8 @@ int main(int argc, const char *argv[])
 
     disassembleChunk(&chunk, "test chunk");
 
+    interpret(&chunk);
+
     freeChunk(&chunk);
 
     freeVM();
