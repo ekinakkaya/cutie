@@ -10,12 +10,30 @@ VM vm;
 
 static InterpretResult run();
 
+static void resetStack()
+{
+    vm.stackTop = vm.stack;
+}
+
 void initVM()
 {
+    resetStack();
 }
 
 void freeVM()
 {
+}
+
+void push(Value value)
+{
+    *vm.stackTop = value;
+    vm.stackTop++;
+}
+
+Value pop()
+{
+    vm.stackTop--;
+    return *vm.stackTop;
 }
 
 InterpretResult interpret(Chunk *chunk)
@@ -33,6 +51,16 @@ static InterpretResult run()
     for (;;)
     {
 #ifdef DEBUG_TRACE_EXECUTION
+        /* we show the current stack before executing instructions, for debugging*/
+        printf("          ---- STACK:  ");
+        for (Value *slot = vm.stack; slot < vm.stackTop; slot++)
+        {
+            printf("[ ");
+            printValue(*slot);
+            printf(" ]");
+        }
+        printf("\n");
+
         /* we pass the relative offset from the beginning of the bytecode. */
         disassembleInstruction(vm.chunk,
                                (int)(vm.ip - vm.chunk->code));
@@ -43,12 +71,13 @@ static InterpretResult run()
         case OP_CONSTANT:
         {
             Value constant = READ_CONSTANT();
-            printValue(constant);
-            printf("\n");
+            push(constant);
             break;
         }
         case OP_RETURN:
         {
+            printValue(pop());
+            printf("\n");
             return INTERPRET_OK;
         }
         }
