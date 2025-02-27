@@ -23,3 +23,7 @@ compiler -> bytecode -> virtual machine
   - Bytes of code
   - Constant values
   - Line information for debugging.
+
+- VM is kinda like the backend of our interpreted language.
+
+- It is faster to dereference a pointer rather than looking up an element in an array by index.
