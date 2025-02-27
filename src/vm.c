@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 #include "common.h"
+#include "debug.h"
 #include "vm.h"
 
 /* a global VM instance is not great, but for now it is good since
@@ -31,6 +32,11 @@ static InterpretResult run()
 
     for (;;)
     {
+#ifdef DEBUG_TRACE_EXECUTION
+        /* we pass the relative offset from the beginning of the bytecode. */
+        disassembleInstruction(vm.chunk,
+                               (int)(vm.ip - vm.chunk->code));
+#endif
         uint8_t instruction;
         switch (instruction = READ_BYTE())
         {
